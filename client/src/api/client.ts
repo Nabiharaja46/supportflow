@@ -54,7 +54,7 @@ export class ApiError extends Error {
   }
 }
 
-const API_URL = import.meta.env.VITE_API_URL as string | undefined;
+const API_URL = '/api';
 const TOKEN_KEY = 'sf_token';
 const USER_KEY = 'sf_user';
 

@@ -2,11 +2,32 @@
   "name": "supportflow",
   "version": "0.1.0",
   "private": true,
-  "description": "SupportFlow — AI-delegated support ticketing platform (monorepo: /server + /client)",
+  "description": "SupportFlow — AI-delegated support ticketing platform (monorepo: /api + /client)",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
-    "install:all": "npm --prefix server install && npm --prefix client install",
-    "dev:server": "npm --prefix server run dev",
-    "dev:client": "npm --prefix client run dev",
-    "build:client": "npm --prefix client run build"
+    "build": "cd client && npm install && npm run build",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:client\"",
+    "dev:api": "nodemon api/index.js",
+    "dev:client": "cd client && npm run dev",
+    "seed": "node api/scripts/seed.js",
+    "test:phase1": "node api/test/phase1.test.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^8.9.5",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "mongodb-memory-server": "^11.2.0",
+    "nodemon": "^3.1.9"
   }
 }

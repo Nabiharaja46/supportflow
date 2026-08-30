@@ -1,7 +1,7 @@
 import { io, type Socket } from 'socket.io-client';
 import type { Message, Ticket } from '../api/client';
 
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL as string | undefined;
+const SOCKET_URL = window.location.origin;
 
 class TicketSocket {
     private socket: Socket | null = null;
