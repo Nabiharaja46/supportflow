@@ -90,8 +90,10 @@ export default function AgentTicketDetailPage() {
     setTriageAction({ kind: 'submitting' });
     try {
       const data = await api<{ ticket: Ticket }>('PATCH', `/tickets/${ticket._id}/triage`, {
-        category: triageCategory.trim(),
-        priority: triagePriority,
+        body: {
+          category: triageCategory.trim(),
+          priority: triagePriority,
+        }
       });
       setTicket(data.ticket);
       setTriageAction({ kind: 'idle' });
